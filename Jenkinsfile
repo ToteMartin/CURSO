@@ -10,9 +10,14 @@
 }*/
 
 node {
+  checkout scm
   stage('Compilar') {
-    echo "Compile starting ..."
-    mvn compile
+    echo "Compile starting ...":
+    withMaven(
+      maven:'Maven defecto(3.6)'
+    ){
+      sh 'mvn compile'
+    }
   }
  stage('Test') {
     echo "Test starting ..."
