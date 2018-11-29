@@ -1,5 +1,5 @@
-//pipeline {
- /* agent any
+pipeline {
+  agent any
   stages {
       stage('Etapa 1') {
         steps {
@@ -7,9 +7,9 @@
           }
        }
     }
-}*/
+}
 
-node {
+/*node {
   stage('Compilar') {
     echo "Compile starting ..."
   }
@@ -20,6 +20,6 @@ node {
     echo "Package starting ..."
  }
 }
-
+*/
 
 
