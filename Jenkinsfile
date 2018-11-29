@@ -10,7 +10,16 @@
 }*/
 
 node {
-  stage('Build') {
-    echo "Hola Mundooooo"
+  stage('Compilar') {
+    echo "Compile starting ..."
   }
+ stage('Test') {
+    echo "Test starting ..."
+ }
+ stage('Empaquetar') {
+    echo "Package starting ..."
+ }
 }
+
+
+
