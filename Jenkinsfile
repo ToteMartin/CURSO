@@ -9,7 +9,7 @@
     }
 }*/
 
-node (master) {
+node {
   checkout scm
   stage('Compilar') {
     echo "Compile starting ...":
@@ -21,9 +21,19 @@ node (master) {
   }
  stage('Test') {
     echo "Test starting ..."
+   withMaven(
+      maven:'Maven por defecto (3.6)'
+    ){
+      sh 'mvn test'
+    }
  }
  stage('Empaquetar') {
     echo "Package starting ..."
+   withMaven(
+      maven:'Maven por defecto (3.6)'
+    ){
+      sh 'mvn package'
+    }
  }
 }
 
