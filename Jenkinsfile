@@ -1,39 +1,53 @@
 pipeline {
-  agent any
-  stages {
+   agent any
+   stages {
       stage('Compilar') {
-        echo 'Compile starting ...'
-        withMaven(
-          maven:'Maven por defecto (3.6)'
-        ){
-          sh 'mvn compile'
-          }
-        }
-    stage('Test') {
-      echo 'Test starting ...'
-      withMaven(
-         maven:'Maven por defecto (3.6)'
-      ){
-        sh 'mvn test'
+         steps {
+            echo 'Empezando la compilacion...'
+            withMaven(
+               maven:'Maven por defecto (3.6)'
+            ){
+               sh 'mvn compile'
+            }
+            echo 'Compilado...'
+         }
       }
+      stage('Test'){
+         steps {
+            echo 'Probando, probando...'
+            withMaven(
+               maven:'Maven por defecto (3.6)'
+            ){
+               sh 'mvn test'
+            }
+         }
+      }
+      stage('Empaquetar'){
+         steps {
+            echo 'Comienza la empaquetacion'
+            withMaven(
+               maven:'Maven por defecto (3.6)'
+            ){
+               sh 'mvn package'
+            }
+         }
+      }
+   }
+
+  post {
+    always {
+      deleteDir()
     }
-    stage('Empaquetar') {
-      echo 'Package starting ...'
-      twithMaven(
-         maven:'Maven por defecto (3.6)'
-      ){
-        sh 'mvn package'
-      }
+    failure {
+      echo "UPS !!!!"
+    }
+    success {
+      echo 'Exito'
+    }
+    changed {
+      echo 'Cambio'
     }
   }
 }
-        
-    
-
-  // try{
-    // sh 'mvn package'
-   //}finally{
-     //deleteDir()
-     //}
 
 
