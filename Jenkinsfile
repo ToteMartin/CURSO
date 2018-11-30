@@ -9,7 +9,7 @@
     }
 }*/
 
-node {
+node (master) {
   checkout scm
   stage('Compilar') {
     echo "Compile starting ...":
