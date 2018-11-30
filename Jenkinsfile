@@ -9,34 +9,28 @@
     }
 }*/
 
+// withMaven(
+     // maven:'Maven por defecto (3.6)'
+    //){
+
 node {
   checkout scm
   stage('Compilar') {
     echo "Compile starting ..."
-  //  withMaven(
-    //  maven:'Maven por defecto (3.6)'
-    //){
-      sh 'mvn compile'
-    }
- // }
+    sh 'mvn compile'
+  }
  stage('Test') {
    echo "Test starting ..."
-   // withMaven(
-     // maven:'Maven por defecto (3.6)'
-    //){
-      sh 'mvn test'
- }
+   sh 'mvn test'
+  }
  stage('Empaquetar') {
    echo "Package starting ..."
-   // withMaven(
-     // maven:'Maven por defecto (3.6)'
-    //){
-   try{   
-   sh 'mvn package'
+   try{
+     sh 'mvn package'
    }finally{
-     deleteDir()
+     //deleteDir()
+     }
    }
-  }
 }
 
 
