@@ -12,7 +12,7 @@
 node {
   checkout scm
   stage('Compilar') {
-    echo "Compile starting ...":
+    echo "Compile starting ..."
     withMaven(
       maven:'Maven por defecto (3.6)'
     ){
@@ -21,7 +21,7 @@ node {
   }
  stage('Test') {
     echo "Test starting ..."
-   withMaven(
+    withMaven(
       maven:'Maven por defecto (3.6)'
     ){
       sh 'mvn test'
@@ -29,12 +29,12 @@ node {
  }
  stage('Empaquetar') {
     echo "Package starting ..."
-   withMaven(
+    withMaven(
       maven:'Maven por defecto (3.6)'
     ){
       sh 'mvn package'
     }
- }
+  }
 }
 
 
