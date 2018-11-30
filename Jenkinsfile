@@ -1,38 +1,39 @@
-/*pipeline {
+pipeline {
   agent any
   stages {
-      stage('Etapa 1') {
-        steps {
-            echo 'Hola mundo'
+      stage('Compilar') {
+        echo 'Compile starting ...'
+        withMaven(
+          maven:'Maven por defecto (3.6)'
+        ){
+          sh 'mvn compile'
           }
-       }
+        }
+    stage('Test') {
+      echo 'Test starting ...'
+      withMaven(
+         maven:'Maven por defecto (3.6)'
+      ){
+        sh 'mvn test'
+      }
     }
-}*/
-
-// withMaven(
-     // maven:'Maven por defecto (3.6)'
-    //){
-
-node {
-  checkout scm
-  stage('Compilar') {
-    echo "Compile starting ..."
-    sh 'mvn compile'
+    stage('Empaquetar') {
+      echo 'Package starting ...'
+      twithMaven(
+         maven:'Maven por defecto (3.6)'
+      ){
+        sh 'mvn package'
+      }
+    }
   }
- stage('Test') {
-   echo "Test starting ..."
-   sh 'mvn test'
-   junit '**/*.xml'
-  }
- stage('Empaquetar') {
-   echo "Package starting ..."
-   try{
-     sh 'mvn package'
-   }finally{
-     //deleteDir()
-     }
-   }
 }
+        
+    
 
+  // try{
+    // sh 'mvn package'
+   //}finally{
+     //deleteDir()
+     //}
 
 
