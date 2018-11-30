@@ -13,27 +13,29 @@ node {
   checkout scm
   stage('Compilar') {
     echo "Compile starting ..."
-    withMaven(
-      maven:'Maven por defecto (3.6)'
-    ){
+  //  withMaven(
+    //  maven:'Maven por defecto (3.6)'
+    //){
       sh 'mvn compile'
     }
-  }
+ // }
  stage('Test') {
-    echo "Test starting ..."
-    withMaven(
-      maven:'Maven por defecto (3.6)'
-    ){
+   echo "Test starting ..."
+   // withMaven(
+     // maven:'Maven por defecto (3.6)'
+    //){
       sh 'mvn test'
-    }
  }
  stage('Empaquetar') {
-    echo "Package starting ..."
-    withMaven(
-      maven:'Maven por defecto (3.6)'
-    ){
-      sh 'mvn package'
-    }
+   echo "Package starting ..."
+   // withMaven(
+     // maven:'Maven por defecto (3.6)'
+    //){
+   try{   
+   sh 'mvn package'
+   }finally{
+     deleteDir()
+   }
   }
 }
 
