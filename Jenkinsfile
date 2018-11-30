@@ -22,7 +22,7 @@ node {
  stage('Test') {
    echo "Test starting ..."
    sh 'mvn test'
-   junit **/*.xml
+   junit '**/*.xml'
   }
  stage('Empaquetar') {
    echo "Package starting ..."
